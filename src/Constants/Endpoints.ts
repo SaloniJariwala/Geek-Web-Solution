@@ -1,4 +1,5 @@
 export const API_KEY = "geekwebsolution";
+export const SIGNIN_API = 'https://geekwebapi.herokuapp.com/v1/sign-in';
 
 export const DESIGNATION_API = 'https://geekwebapi.herokuapp.com/v1/designation';
 export const USER_ROLE_API = 'https://geekwebapi.herokuapp.com/v1/user-role';

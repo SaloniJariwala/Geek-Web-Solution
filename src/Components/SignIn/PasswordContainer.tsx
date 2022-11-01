@@ -1,40 +1,31 @@
 import { Controller } from "react-hook-form";
-import { IMemoisedComponentProps } from "../../../../Types/common";
+import { IMemoisedComponentProps } from "../../Types/common";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import React from "react";
+import {Link} from "./style";
 
-const PersonalEmailContainer: React.FC<IMemoisedComponentProps> = ({
-    methods,
-}) => {
+const PasswordContainer: React.FC<IMemoisedComponentProps> = ({ methods }) => {
 
     const {
         control,
         formState: { errors },
     } = methods;
 
-    const isValidEmail = (email: string) => {
-        return /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/
-            .test(email);
-    };
-
     return (
         <div>
             <Controller
                 control={control}
-                name="personalEmail"
-                rules={{
-                    required: 'Enter personal email address',
-                    validate: (value) => isValidEmail(value)
-                }}
+                name="password"
+                rules={{ required: 'Enter Password' }}
                 render={({ field: { onChange, onBlur, value } }) => (
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Personal Email"
+                        label="Password"
                     >
                         <Form.Control
-                            type="email"
-                            placeholder="Enter company email"
+                            type="password"
+                            placeholder="Enter password"
                             onChange={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -42,14 +33,17 @@ const PersonalEmailContainer: React.FC<IMemoisedComponentProps> = ({
                     </FloatingLabel>
                 )}
             />
-            {errors.personalEmail && errors.personalEmail.message && (
+            {errors.password && errors.password.message && (
                 <div className="error-message">
                     <AiOutlineExclamationCircle />
-                    {errors.personalEmail.message}
+                    {errors.password.message}
                 </div>
             )}
+            <div style={{ textAlign: 'end' }}>
+                <Link>Forgot Password</Link>
+            </div>
         </div>
     );
 };
 
-export default PersonalEmailContainer;
+export default PasswordContainer;
