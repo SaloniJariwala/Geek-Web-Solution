@@ -1,10 +1,10 @@
 import { Controller } from "react-hook-form";
-import { IMemoisedComponentProps } from "../../../../Types/common";
+import { IMemoisedComponentProps } from "../../Types/common";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import React from "react";
 
-const PersonalEmailContainer: React.FC<IMemoisedComponentProps> = ({
+const EmailContainer: React.FC<IMemoisedComponentProps> = ({
     methods,
 }) => {
 
@@ -22,19 +22,19 @@ const PersonalEmailContainer: React.FC<IMemoisedComponentProps> = ({
         <div>
             <Controller
                 control={control}
-                name="personalEmail"
+                name="email"
                 rules={{
-                    required: 'Enter personal email address',
+                    required: 'Enter email address',
                     validate: (value) => isValidEmail(value)
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Personal Email"
+                        label="Email"
                     >
                         <Form.Control
                             type="email"
-                            placeholder="Enter company email"
+                            placeholder="Enter email"
                             onChange={onChange}
                             onBlur={onBlur}
                             value={value}
@@ -42,14 +42,14 @@ const PersonalEmailContainer: React.FC<IMemoisedComponentProps> = ({
                     </FloatingLabel>
                 )}
             />
-            {errors.personalEmail && errors.personalEmail.message && (
+            {errors.email && errors.email.message && (
                 <div className="error-message">
                     <AiOutlineExclamationCircle />
-                    {errors.personalEmail.message}
+                    {errors.email.message}
                 </div>
             )}
         </div>
     );
 };
 
-export default PersonalEmailContainer;
+export default EmailContainer;
