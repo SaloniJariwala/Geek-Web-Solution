@@ -1,4 +1,5 @@
 import UserHomeCom from "../Components/Users/index";
+import PageFooter from "../UIComponents/PageFooter";
 import PageHeader from "../UIComponents/PageHeader";
 
 const UserHome: React.FC = () => {
@@ -7,6 +8,7 @@ const UserHome: React.FC = () => {
             {/* <Layout MainComponent={<UserHomeCom />} /> */}
             <PageHeader title="Employee Management" />
             <UserHomeCom />
+            <PageFooter />
         </>
     );
 };

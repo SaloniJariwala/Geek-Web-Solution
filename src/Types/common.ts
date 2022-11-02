@@ -22,3 +22,9 @@ export interface ISideBarContainerProps {
 export interface IMemoisedComponentProps {
     methods: any;
 }
+
+export interface ISignInUser {
+    token: string;
+    name: string;
+    id: string;
+}

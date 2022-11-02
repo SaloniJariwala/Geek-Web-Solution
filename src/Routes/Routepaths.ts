@@ -4,5 +4,6 @@ export const Routepaths = {
     dashboard: '/dashboard',
     userHome: '/users',
     addUser: '/add-user',
-    editUser: '/edit-user/:id'
+    editUser: '/edit-user/:id',
+    profile: '/profile',
 };

@@ -23,6 +23,7 @@ export interface IBasicDetailsContainerProps {
 }
 
 export interface IBasicDetails {
+    photo?: string | undefined;
     name?: string | undefined;
     phoneNo?: string | undefined;
     personalEmail?: string | undefined;

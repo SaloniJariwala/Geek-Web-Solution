@@ -9,6 +9,8 @@ import { UserHomeWrapper } from "./style";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { AiOutlineEye, AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import ViewModal from "./ViewModal";
+import { getDesignationById } from "../../Utils/getDesignation";
+import { getUserRoleById } from "../../Utils/getUserRole";
 
 const Users: React.FC = () => {
 
@@ -16,9 +18,9 @@ const Users: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoadingView, setIsLoadingView] = useState<boolean>(false);
     const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false);
-    const [allUsersData, setAllUsersData] = useState<IEmployeeInfo[]>([]);
     const [designationData, setDesignationData] = useState<IOption[]>([]);
     const [userRoleData, setUserRoleData] = useState<IOption[]>([]);
+    const [allUsersData, setAllUsersData] = useState<IEmployeeInfo[]>([]);
     const [selectedUser, setSelectedUser] = useState<IEmployeeInfo>();
     const [showViewModal, setShowViewModal] = useState<boolean>(false);
     const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -68,23 +70,14 @@ const Users: React.FC = () => {
         getUserRole();
     }, []);
 
-    const getDesignationById = (id: string | undefined) => {
-        const desig = designationData.find((item: IOption) => item._id === id);
-        return desig?.name;
-    }
 
-    const getUserRoleById = (id: string | undefined) => {
-        const userRole = userRoleData.find((item: IOption) => item._id === id);
-        return userRole?.name;
-    }
-
-    const handleClick = (id: string | undefined, name: string) => {
-        let desig, userRole: string | undefined;
+    const handleClick = async (id: string | undefined, name: string) => {
+        // let desig, userRole: string | undefined;
         setIsLoadingView(true);
         axios.get(`${USER_API}/${id}`)
-            .then((response) => {
-                desig = getDesignationById(response.data.designationId);
-                userRole = getUserRoleById(response.data.userRoleId);
+            .then(async (response) => {
+                const desig = await getDesignationById(response.data.designationId);
+                const userRole = await getUserRoleById(response.data.userRoleId);
                 setSelectedUser({
                     ...response.data,
                     designation: desig,
@@ -187,6 +180,16 @@ const Users: React.FC = () => {
         )
     }
 
+    const getUserRole = (id: string | undefined) => {
+        const userRole = userRoleData.find((item: IOption) => item._id === id);
+        return userRole?.name;
+    }
+
+    const getDesignation = (id: string | undefined) => {
+        const desig = designationData.find((item: IOption) => item._id === id);
+        return desig?.name;
+    }
+
     const columns: IColumnType[] = [
         {
             title: "User ID",
@@ -203,13 +206,13 @@ const Users: React.FC = () => {
         {
             title: "User Role",
             key: "userRole",
-            render: (record: IEmployeeInfo) => getUserRoleById(record.userRoleId),
+            render: (record: IEmployeeInfo) => getUserRole(record.userRoleId),
             width: 200,
         },
         {
             title: "Employee Designation",
             key: "designation",
-            render: (record: IEmployeeInfo) => getDesignationById(record.designationId),
+            render: (record: IEmployeeInfo) => getDesignation(record.designationId),
             width: 200,
         },
         {

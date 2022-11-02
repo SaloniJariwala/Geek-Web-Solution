@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { IPageHeaderContainerProps } from "../Types/common";
 import SideBar from "./SideBar";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const HeaderWrapper = styled.div`
     width: 100%;
@@ -25,13 +26,22 @@ const PageHeader: React.FC<IPageHeaderContainerProps> = ({ title }) => {
     return (
         <div style={{ display: 'flex', alignItems: 'center', height: 70 }}>
             <div>
-                <img
+                {/* <img
                     src="/images/short_logo.png"
                     alt="logo"
                     height={70}
                     width={70}
                     onClick={handleShow}
                     style={{ cursor: 'pointer' }}
+                /> */}
+                <AiOutlineMenu
+                    onClick={handleShow}
+                    style={{
+                        height: 30,
+                        width: 30,
+                        cursor: 'pointer',
+                        marginLeft: 15
+                    }}
                 />
                 <SideBar show={show} handleClose={handleClose} />
             </div>

@@ -1,4 +1,5 @@
 import DashboardCom from "../Components/Dashboard";
+import PageFooter from "../UIComponents/PageFooter";
 import PageHeader from "../UIComponents/PageHeader";
 
 const Dashboard: React.FC = () => {
@@ -7,6 +8,7 @@ const Dashboard: React.FC = () => {
             {/* <Layout MainComponent={<DashboardCom />} /> */}
             <PageHeader title="Dashboard" />
             <DashboardCom />
+            <PageFooter />
         </>
     );
 };

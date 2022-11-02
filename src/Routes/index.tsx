@@ -6,6 +6,7 @@ import EditEmployee from "../Pages/EditEmployee";
 // import Homepage from "../Pages/Home";
 import SignIn from "../Pages/SignIn";
 import UserHome from "../Pages/UserHome";
+import UserProfile from "../Pages/UserProfile";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import { Routepaths } from "./Routepaths";
@@ -37,6 +38,10 @@ const Router: React.FC = () => {
             <Route
                 path={Routepaths.editUser}
                 element={<PrivateRoute Component={<EditEmployee />} />}
+            />
+            <Route
+                path={Routepaths.profile}
+                element={<PrivateRoute Component={<UserProfile />} />}
             />
         </Routes>
     );

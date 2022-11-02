@@ -3,7 +3,7 @@ import { IRouteContainerProps } from "../Types/Route";
 import { Routepaths } from "./Routepaths";
 
 const PrivateRoute: React.FC<IRouteContainerProps> = ({ Component }) => {
-    const token = localStorage.getItem('LogInToken');
+    const token = localStorage.getItem('LoginToken');
     if (token) {
         return Component
     } else {

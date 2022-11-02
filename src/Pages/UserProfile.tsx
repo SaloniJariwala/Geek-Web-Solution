@@ -1,16 +1,16 @@
 import PageHeader from "../UIComponents/PageHeader";
-import AddEmployees from "../Components/Users/AddEditEmployee";
+import UserProfileCom from "../Components/UserProfile";
 import PageFooter from "../UIComponents/PageFooter";
 
-const EditEmployee: React.FC = () => {
+const UserProfile: React.FC = () => {
     return (
         <>
             {/* <Layout MainComponent={<DashboardCom />} /> */}
-            <PageHeader title="Employee Management" />
-            <AddEmployees />
+            <PageHeader title="Profile Page" />
+            <UserProfileCom />
             <PageFooter />
         </>
     );
 };
 
-export default EditEmployee;
+export default UserProfile;
