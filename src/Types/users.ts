@@ -1,6 +1,7 @@
 import { AlignType } from "react-bootstrap/esm/types";
 import { FieldValues } from "react-hook-form";
 import { IMemoisedComponentProps } from "./common";
+import { IEmergencyContact } from "./Profile";
 
 export interface IOption {
     _id: string;
@@ -48,6 +49,7 @@ export interface IEmployeeInfo extends IBankDetails, IBasicDetails {
     _id?: string | undefined;
     designation?: string;
     userRole?: string;
+    emergencyDetails?: IEmergencyContact;
 }
 
 export interface IColumnType {
