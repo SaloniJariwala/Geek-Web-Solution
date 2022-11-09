@@ -1,9 +1,9 @@
+import React, { ChangeEvent, useState } from "react";
 import { Controller } from "react-hook-form";
 import { IMemoisedComponentProps } from "../../Types/common";
 import { FloatingLabel, Form } from "react-bootstrap";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import React from "react";
-import {Link} from "./style";
+import { AiOutlineExclamationCircle, AiFillEye } from "react-icons/ai";
+import { Link } from "./style";
 
 const PasswordContainer: React.FC<IMemoisedComponentProps> = ({ methods }) => {
 
@@ -11,6 +11,16 @@ const PasswordContainer: React.FC<IMemoisedComponentProps> = ({ methods }) => {
         control,
         formState: { errors },
     } = methods;
+
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
+    const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.checked) {
+            setShowPassword(true);
+        } else {
+            setShowPassword(false);
+        }
+    }
 
     return (
         <div>
@@ -24,7 +34,7 @@ const PasswordContainer: React.FC<IMemoisedComponentProps> = ({ methods }) => {
                         label="Password"
                     >
                         <Form.Control
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder="Enter password"
                             onChange={onChange}
                             onBlur={onBlur}
@@ -39,7 +49,13 @@ const PasswordContainer: React.FC<IMemoisedComponentProps> = ({ methods }) => {
                     {errors.password.message}
                 </div>
             )}
-            <div style={{ textAlign: 'end' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Form.Check
+                    label="Show Password"
+                    name="showPassword"
+                    onChange={handleRadioChange}
+                    id={`showPassword`}
+                />
                 <Link>Forgot Password</Link>
             </div>
         </div>
